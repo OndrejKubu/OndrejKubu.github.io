@@ -388,6 +388,21 @@ footer {
     margin-top: 3rem;
 }
 
+footer .pledge-notice {
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+footer .pledge-notice a {
+    color: #90EE90;
+    text-decoration: underline;
+}
+
+footer .pledge-notice a:hover {
+    color: white;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .header-content {
