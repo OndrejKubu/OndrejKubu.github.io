@@ -1,0 +1,422 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #212121;
+    background-color: #ffffff;
+}
+
+a {
+    color: #224422;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #336633;
+    text-decoration: underline;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header Styles */
+header {
+    background-color: #224422;
+    color: white;
+    padding: 1rem 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header-content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+nav {
+    display: flex;
+    gap: 1.5rem;
+}
+
+nav a {
+    color: white;
+    font-weight: 500;
+    padding: 0.5rem 0.75rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+nav a:hover,
+nav a.active {
+    background-color: rgba(255, 255, 255, 0.15);
+    text-decoration: none;
+}
+
+/* Main Content */
+main {
+    padding-top: 2rem;
+}
+
+section {
+    padding: 2rem 0;
+}
+
+h2 {
+    font-size: 1.8rem;
+    color: #224422;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #224422;
+    padding-bottom: 0.5rem;
+}
+
+h3 {
+    font-size: 1.4rem;
+    color: #336633;
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+h4 {
+    font-size: 1.1rem;
+    color: #224422;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Hero Section */
+.hero {
+    background-color: #f5f5f5;
+    padding: 3rem 0;
+}
+
+.intro p {
+    margin-bottom: 1rem;
+    font-size: 1.05rem;
+}
+
+/* Research Interests */
+.research-interests {
+    background-color: white;
+}
+
+.research-interests ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.research-interests li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.research-interests li:before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    color: #224422;
+    font-weight: bold;
+}
+
+/* Awards Section */
+.awards {
+    background-color: #f5f5f5;
+}
+
+.awards ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.awards li {
+    padding: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.awards li:before {
+    content: "★";
+    position: absolute;
+    left: 0;
+    color: #224422;
+}
+
+/* Contact Section */
+.contact {
+    background-color: white;
+}
+
+.contact-info {
+    margin-bottom: 1.5rem;
+}
+
+.contact-info p {
+    margin-bottom: 0.5rem;
+}
+
+.links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.links a {
+    background-color: #224422;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.links a:hover {
+    background-color: #336633;
+    text-decoration: none;
+}
+
+/* Publications Page */
+.publications {
+    background-color: white;
+}
+
+.pub-stats {
+    background-color: #f5f5f5;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 2rem;
+}
+
+.pub-stats p {
+    margin-bottom: 0.5rem;
+}
+
+.pub-list {
+    counter-reset: pub-counter;
+    list-style: none;
+    padding-left: 0;
+}
+
+.pub-list li {
+    counter-increment: pub-counter;
+    margin-bottom: 1.5rem;
+    padding-left: 2.5rem;
+    position: relative;
+}
+
+.pub-list li:before {
+    content: "[" counter(pub-counter) "]";
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+    color: #224422;
+}
+
+/* Talks & Posters Page */
+.talks-note {
+    background-color: #f5f5f5;
+    padding: 1rem;
+    border-radius: 4px;
+    margin-bottom: 2rem;
+    border-left: 4px solid #224422;
+}
+
+.talk-list {
+    margin-bottom: 2rem;
+}
+
+.talk-item {
+    background-color: #f5f5f5;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border-radius: 4px;
+    border-left: 4px solid #224422;
+}
+
+.talk-item h4 {
+    margin-top: 0;
+    color: #224422;
+}
+
+.talk-item .venue {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 0.3rem;
+}
+
+.talk-item .date {
+    font-weight: 600;
+    color: #336633;
+    margin-bottom: 0.3rem;
+}
+
+.talk-item .type {
+    display: inline-block;
+    background-color: #224422;
+    color: white;
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+}
+
+.talk-item .authors {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 0.5rem;
+}
+
+/* Teaching Page */
+.teaching-position {
+    margin-bottom: 2rem;
+}
+
+.institution {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 0.5rem;
+}
+
+.period {
+    font-weight: 600;
+    color: #224422;
+    margin-bottom: 1rem;
+}
+
+.teaching ul {
+    margin-top: 0.5rem;
+}
+
+.intl-experience {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.experience-item {
+    background-color: #f5f5f5;
+    padding: 1.5rem;
+    border-radius: 4px;
+}
+
+.skills {
+    background-color: #f5f5f5;
+    padding: 1.5rem;
+    border-radius: 4px;
+    margin-top: 1rem;
+}
+
+.skills p {
+    margin-bottom: 0.5rem;
+}
+
+/* CV Page */
+.cv-download {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.download-button {
+    display: inline-block;
+    background-color: #224422;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.download-button:hover {
+    background-color: #336633;
+    text-decoration: none;
+}
+
+.cv-section {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+}
+
+.cv-section p {
+    margin-bottom: 1rem;
+}
+
+.cv-section p:last-child {
+    margin-bottom: 0;
+}
+
+.cv-section ul {
+    margin-top: 0.5rem;
+    padding-left: 1.5rem;
+}
+
+.cv-section li {
+    margin-bottom: 0.5rem;
+}
+
+/* Footer */
+footer {
+    background-color: #224422;
+    color: white;
+    text-align: center;
+    padding: 1.5rem 0;
+    margin-top: 3rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    nav {
+        gap: 1rem;
+    }
+
+    nav a {
+        font-size: 0.9rem;
+        padding: 0.4rem 0.6rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+
+    .intro p {
+        font-size: 1rem;
+    }
+}
