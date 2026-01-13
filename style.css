@@ -56,6 +56,12 @@ header h1 {
     margin: 0;
 }
 
+header h1 .pledge-diamond {
+    font-size: 0.55em;
+    vertical-align: middle;
+    display: inline-block;
+}
+
 nav {
     display: flex;
     gap: 1.5rem;
