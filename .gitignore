@@ -12,3 +12,6 @@ Thumbs.db
 # Backup files
 *.bak
 *.doc
+
+# Temporary files
+tmpclaude-*
