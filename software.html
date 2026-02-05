@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software - Ondřej Kubů</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Ondřej Kubů <span class="pledge-diamond">🔶</span></h1>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="publications.html">Publications</a>
+                <a href="talks.html">Talks & Posters</a>
+                <a href="teaching.html">Teaching</a>
+                <a href="software.html" class="active">Software</a>
+                <a href="cv.html">CV</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h2>Software</h2>
+                <p>
+                    Computational tools developed as part of my research on integrable systems and Haantjes geometry.
+                    All software is free for academic and research use.
+                </p>
+            </div>
+        </section>
+
+        <section class="software-package">
+            <div class="container">
+                <h2>Nijenhuis and Haantjes Torsion Package for Maple</h2>
+
+                <div class="package-info">
+                    <p><strong>Version:</strong> 1.0 (February 2026)</p>
+                    <p><strong>Language:</strong> Maple</p>
+                    <p><strong>License:</strong> Free for academic and research use</p>
+                </div>
+
+                <h3>Overview</h3>
+                <p>
+                    This Maple package computes the Nijenhuis and Haantjes torsions of (1,1)-tensor fields.
+                    These geometric invariants are fundamental tools in:
+                </p>
+                <ul>
+                    <li>Separation of variables for integrable systems</li>
+                    <li>Classification of Hamiltonian systems</li>
+                    <li>Study of Haantjes algebras and symplectic-Haantjes manifolds</li>
+                    <li>Differential geometry of almost-complex structures</li>
+                </ul>
+
+                <h3>Download & Documentation</h3>
+                <div class="download-links">
+                    <a href="haantjes/NijenhuisHaantjesTorsion.mpl" class="download-button" download>Download Maple Package (.mpl)</a>
+                    <a href="haantjes/README.md" class="download-button secondary" target="_blank">View Full Documentation</a>
+                    <a href="haantjes/QUICKSTART.md" class="download-button secondary" target="_blank">View Quick Start Guide</a>
+                </div>
+
+                <h3>Quick Start</h3>
+                <div class="code-section">
+                    <h4>Installation</h4>
+                    <p>Copy the functions from <code>NijenhuisHaantjesTorsion.mpl</code> into your Maple workbook.</p>
+
+                    <h4>Basic Usage</h4>
+<pre><code># Define your tensor L as an n×n matrix
+L := Matrix([[f11, f12, f13],
+             [f21, f22, f23],
+             [f31, f32, f33]]);
+
+# Define coordinates
+coords := [x, y, z];
+
+# Compute Haantjes torsion
+H := HaantjesTorsion(L, coords);
+
+# Check if tensor is Haantjes
+IsHaantjes(L, coords);   # Returns true/false</code></pre>
+
+                    <h4>Main Functions</h4>
+                    <table class="function-table">
+                        <tr>
+                            <td><code>NijenhuisTorsion(L, coords)</code></td>
+                            <td>Full Nijenhuis torsion tensor</td>
+                        </tr>
+                        <tr>
+                            <td><code>HaantjesTorsion(L, coords)</code></td>
+                            <td>Full Haantjes torsion tensor</td>
+                        </tr>
+                        <tr>
+                            <td><code>IsNijenhuis(L, coords)</code></td>
+                            <td>Check if all Nijenhuis components vanish</td>
+                        </tr>
+                        <tr>
+                            <td><code>IsHaantjes(L, coords)</code></td>
+                            <td>Check if all Haantjes components vanish</td>
+                        </tr>
+                    </table>
+
+                    <h4>Options</h4>
+<pre><code># Disable simplification for faster computation
+H := HaantjesTorsion(L, coords, simplify_each=false);
+
+# Enable verbose output
+H := HaantjesTorsion(L, coords, verbose=true);</code></pre>
+                </div>
+
+                <h3>Mathematical Background</h3>
+                <p>
+                    For a (1,1)-tensor field L on a manifold with coordinates x = (x<sup>1</sup>,...,x<sup>n</sup>),
+                    the <strong>Nijenhuis torsion</strong> is the (1,2)-tensor defined by:
+                </p>
+                <div class="math-formula">
+                    (T<sub>L</sub>)<sup>i</sup><sub>jk</sub> = Σ<sub>α</sub> [ (∂L<sup>i</sup><sub>k</sub>/∂x<sup>α</sup>)L<sup>α</sup><sub>j</sub>
+                    - (∂L<sup>i</sup><sub>j</sub>/∂x<sup>α</sup>)L<sup>α</sup><sub>k</sub>
+                    + (∂L<sup>α</sup><sub>j</sub>/∂x<sup>k</sup> - ∂L<sup>α</sup><sub>k</sub>/∂x<sup>j</sup>)L<sup>i</sup><sub>α</sub> ]
+                </div>
+                <p>
+                    The <strong>Haantjes torsion</strong> H<sub>L</sub> is a derived quantity that provides a weaker
+                    (but often more useful) condition for local diagonalizability.
+                </p>
+                <p>
+                    <strong>Key property:</strong> T<sub>L</sub> = 0 implies H<sub>L</sub> = 0, but not conversely.
+                </p>
+
+                <h3>References</h3>
+                <ol class="references">
+                    <li>
+                        D. Reyes, P. Tempesta, G. Tondo, "Classical multiseparable Hamiltonian systems, superintegrability and Haantjes geometry",
+                        <em>Commun. Nonlinear Sci. Numer. Simul.</em> <strong>104</strong> (2022) 106021.
+                        <a href="https://doi.org/10.1016/j.cnsns.2021.106021" target="_blank">DOI</a>
+                    </li>
+                    <li>
+                        P. Tempesta, G. Tondo, "Higher Haantjes Brackets and Integrability",
+                        <em>Commun. Math. Phys.</em> <strong>389</strong> (2022) 1647–1671.
+                        <a href="https://doi.org/10.1007/s00220-021-04233-5" target="_blank">DOI</a>
+                    </li>
+                    <li>
+                        J. Haantjes, "On X<sub>m</sub>-forming sets of eigenvectors",
+                        <em>Nederl. Akad. Wetensch. Proc. Ser. A</em> <strong>58</strong> (1955) 158–162.
+                    </li>
+                    <li>
+                        A. Nijenhuis, "X<sub>n-1</sub>-forming sets of eigenvectors",
+                        <em>Nederl. Akad. Wetensch. Proc. Ser. A</em> <strong>54</strong> (1951) 200–212.
+                    </li>
+                </ol>
+
+                <h3>Contact</h3>
+                <p>
+                    For questions, bug reports, or collaboration inquiries: <a href="mailto:ondrej.kubu@icmat.es">ondrej.kubu@icmat.es</a>
+                </p>
+
+                <h3>Acknowledgments</h3>
+                <p class="acknowledgment">
+                    This code was developed as part of research on integrable systems and Haantjes geometry.
+                    OK's postdoctoral fellowship is financed by project FOSTERING ICMAT'S STRATEGIC SCIENTIFIC LINES
+                    (reference 202450E223) of ICMAT-CSIC, Spain, supported by the Severo Ochoa Programme for
+                    Centres of Excellence in R&D (CEX2019-000904-S).
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Ondřej Kubů. All rights reserved.</p>
+            <p class="pledge-notice">I have taken the 🔸10% Pledge to donate 10% of my lifetime income to effective charities. <a href="https://www.givingwhatwecan.org/pledge" target="_blank">Find out more and join me here!</a></p>
+        </div>
+    </footer>
+</body>
+</html>
