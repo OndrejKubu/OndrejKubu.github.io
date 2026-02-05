@@ -9,7 +9,7 @@
 <body>
     <header>
         <div class="header-content">
-            <h1>Ondřej Kubů <span class="pledge-diamond">🔶</span></h1>
+            <h1><a href="index.html" class="name-link">Ondřej Kubů</a> <span class="pledge-diamond" id="pledge-diamond" role="button" tabindex="0" title="Learn about my pledge">🔶</span></h1>
             <nav>
                 <a href="index.html">Home</a>
                 <a href="publications.html">Publications</a>
@@ -106,8 +106,17 @@
     <footer>
         <div class="container">
             <p>&copy; 2026 Ondřej Kubů. All rights reserved.</p>
-            <p class="pledge-notice">I have taken the 🔸10% Pledge to donate 10% of my lifetime income to effective charities. <a href="https://www.givingwhatwecan.org/pledge" target="_blank">Find out more and join me here!</a></p>
+            <p class="pledge-notice" id="pledge-notice">I have taken the 🔸10% Pledge to donate 10% of my lifetime income to effective charities. <a href="https://www.givingwhatwecan.org/pledge" target="_blank">Find out more and join me here!</a></p>
         </div>
     </footer>
+
+    <script>
+        document.getElementById('pledge-diamond').addEventListener('click', function() {
+            const pledgeNotice = document.getElementById('pledge-notice');
+            pledgeNotice.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            pledgeNotice.classList.add('highlight');
+            setTimeout(() => pledgeNotice.classList.remove('highlight'), 2000);
+        });
+    </script>
 </body>
 </html>

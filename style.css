@@ -56,10 +56,26 @@ header h1 {
     margin: 0;
 }
 
+header h1 .name-link {
+    color: white;
+    text-decoration: none;
+}
+
+header h1 .name-link:hover {
+    text-decoration: none;
+    opacity: 0.9;
+}
+
 header h1 .pledge-diamond {
     font-size: 0.55em;
     vertical-align: middle;
     display: inline-block;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+header h1 .pledge-diamond:hover {
+    transform: scale(1.2);
 }
 
 nav {
@@ -407,6 +423,21 @@ footer .pledge-notice a {
 
 footer .pledge-notice a:hover {
     color: white;
+}
+
+footer .pledge-notice.highlight {
+    animation: pulse-glow 0.5s ease-in-out 3;
+}
+
+@keyframes pulse-glow {
+    0%, 100% {
+        opacity: 0.9;
+        text-shadow: none;
+    }
+    50% {
+        opacity: 1;
+        text-shadow: 0 0 10px rgba(144, 238, 144, 0.8);
+    }
 }
 
 /* Software Page */
