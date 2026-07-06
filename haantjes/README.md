@@ -48,6 +48,7 @@ Download the file `NijenhuisHaantjesTorsion.mpl` and copy the functions into you
 
 ### Basic Usage
 
+```maple
 # Define a (1,1)-tensor as an n×n matrix
 L := Matrix([[x, 0, 0], [0, y, 0], [0, 0, z]]);
 coords := [x, y, z];
@@ -116,13 +117,12 @@ results[[1,2,3]];  # Access T^1_{23}
 
 ## Examples
 
-See `TestExamples.mpl` for detailed worked examples:
+See `QUICKSTART.md` for worked examples covering the common use cases. The package has been validated on:
 
-1. **3D Harmonic Oscillator** (Nijenhuis case)
-2. **Generic 2×2 tensor** (Non-Nijenhuis)  
-3. **Lie algebra case** (so(3))
-4. **Batch computation** (specific components)
-5. **Utility functions** (IsNijenhuis, IsHaantjes)
+1. **3D Harmonic Oscillator** (diagonal tensor, Nijenhuis case)
+2. **Generic 2×2 tensor** (non-Nijenhuis)
+3. **Lie algebra cases** (so(3), A_{4,2})
+4. **Batch computation** of specific components
 
 Quick example:
 
@@ -173,7 +173,8 @@ IsNijenhuis(L, [x,y,z]);  # Returns: true
 
 For questions, bug reports, or collaboration inquiries:
 - **Ondřej Kubů** - ICMAT (Instituto de Ciencias Matemáticas), Madrid
-- Website: [your website here]
+- Website: [ondrejkubu.github.io](https://ondrejkubu.github.io)
+- Email: ondrej.kubu@icmat.es
 
 ## Acknowledgments
 
