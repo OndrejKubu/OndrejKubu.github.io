@@ -329,6 +329,11 @@ h4 {
     margin-top: 0.5rem;
 }
 
+.talk-item .slides {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+}
+
 /* Teaching Page */
 .teaching-position {
     margin-bottom: 2rem;
