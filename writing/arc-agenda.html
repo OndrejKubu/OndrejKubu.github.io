@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARC's research agenda: solid mathematics, an unclear safety case - Ondřej Kubů</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1><a href="../index.html" class="name-link">Ondřej Kubů</a> <span class="pledge-diamond" id="pledge-diamond" role="button" tabindex="0" title="Learn about my pledge">🔶</span> <a href="https://pauseai.info/" target="_blank" class="pause-icon" title="PauseAI"><img src="../pauseai-logo.svg" alt="PauseAI"></a></h1>
+            <nav>
+                <a href="../index.html">Home</a>
+                <a href="../publications.html">Publications</a>
+                <a href="../talks.html">Talks & Posters</a>
+                <a href="index.html" class="active">Writing</a>
+                <a href="../teaching.html">Teaching</a>
+                <a href="../software.html">Software</a>
+                <a href="../cv.html">CV</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="essay">
+            <div class="container">
+                <p class="essay-back"><a href="index.html">&larr; All writing</a></p>
+                <h2>ARC's research agenda: solid mathematics, an unclear safety case</h2>
+                <p class="essay-date">28 July 2026</p>
+                <p class="essay-crosspost">Also on <a href="https://kubuondr.substack.com/p/arcs-research-agenda-solid-mathematics" target="_blank">Substack</a>.</p>
+
+                <p class="essay-lead">This post is the first in a series in which I, a postdoc working on integrable systems moving into AI safety, work through the agendas of theory-first safety organisations. The question I am asking of each is the one I had to answer for myself: is there tractable mathematical work here, and does it matter if the programme succeeds? I start with the Alignment Research Center because I have looked at it most closely. Disclosure: I reached the second round of the MATS Autumn 2026 Theory track with ARC and was rejected. I have tried to be objective and I have mostly come to the conclusions before the rejection once I did a deeper dive. I say plainly below where I think the mathematics is strong.</p>
+
+                <h3>What the agenda is</h3>
+
+                <p>The key problem ARC is trying to solve is the <a href="https://www.lesswrong.com/posts/GNhMPAWcfBCASy8e6/a-central-ai-alignment-problem-capabilities-generalization" target="_blank">sharp left turn</a>: catastrophic misgeneralizations that no sampling method can detect, because they are too rare to appear in testing.</p>
+
+                <p>To address this, ARC is trying to establish <em>a priori</em> safety guarantees derived from the model's structure and how that structure formed during training, rather than from running inputs through it. As Michael Winer puts the operating rule in <a href="https://www.alignmentforum.org/posts/M2tD23bvQLBqsEpqu/a-mike-s-eye-view-of-arc-s-research" target="_blank">&ldquo;A Mike's-Eye View of ARC's Research&rdquo;</a> (June 2026), &ldquo;never assume the input-output behavior you haven't seen looks like the behavior you have seen, for any object.&rdquo;</p>
+
+                <p>By his account, the programme has five parts:</p>
+
+                <ol>
+                    <li><strong>Mechanistic estimators</strong> obeying the Matching Sampling Principle (MSP): estimate a property of a model from its parameters and a structural explanation, without running inputs through it, at least as efficiently as sampling would.</li>
+                    <li><strong>Structure identification</strong>: detect structural changes during training and turn them into explanations that improve the estimators.</li>
+                    <li><strong>Real-world distribution handling</strong>: cope with the implicit input distribution a deployed model faces.</li>
+                    <li><strong>An alignment target</strong>: a mathematically precise function scoring outputs as good or bad.</li>
+                    <li><strong>Mechanistic Anomaly Detection</strong> (MAD): flag correct-looking outputs produced by the wrong mechanism.</li>
+                </ol>
+
+                <p>ARC calls the two modes <em>inductive</em> and <em>deductive</em> estimation; the MSP demands that the deductive estimator is at least as compute-efficient as sampling, not merely as accurate. I like the framing and applaud the attempt to deal with a real hard problem.</p>
+
+                <h3>The one concrete result</h3>
+
+                <p>ARC has made recent progress (<a href="https://arxiv.org/abs/2605.05179" target="_blank">Wu et al. 2026</a>) on mechanistic estimators for a multi-layer perceptron (MLP) with random weights and Gaussian inputs.</p>
+
+                <p>Given the assumptions, what is the likely output? Monte Carlo would draw many inputs and average the outputs. ARC's method instead carries the first few cumulants of the activation distribution at each layer (mean, variance, and a few higher corrections) and pushes them forward layer by layer, handling each nonlinearity by a Hermite expansion and discarding the higher-order terms that are negligible at large width. For wide enough nets this reaches a target accuracy in substantially fewer operations than sampling.</p>
+
+                <p>This is a solid mathematical result. The obvious limitation is the assumption of Gaussian inputs; lifting it means swapping the Hermite polynomials for the orthogonal family matched to the actual input distribution.</p>
+
+                <p>ARC has since turned this into an ongoing open competition, the <a href="https://www.alignment.org/blog/announcing-the-arc-white-box-estimation-challenge/" target="_blank">White-Box Estimation Challenge</a> run with AIcrowd (prize pool at least $100,000), where the goal is to estimate the expected output of a random 8-layer, width-256 MLP over Gaussian inputs, by any method. We will soon see how far past the sampling baseline the field can push. If you want to find out whether this work suits you without applying for anything, that is the cheapest way to do it.</p>
+
+                <p>The authors also show the estimator can be used to train the network, not just to inspect it. It gives a fast, differentiable approximation to the forward pass, so you can take gradients through it and get a training signal. The one concrete result so far is therefore as much a capability advance as a safety one. That does not diminish the work, but the safety payoff is still only a promise.</p>
+
+                <p>The doubts I raise below are about the feasibility of the complete agenda, not the quality of the work.</p>
+
+                <h3>The known obstacles</h3>
+
+                <p>The most detailed critique comes from inside. David Matolcsi, who worked in ARC Theory from late 2023 to early 2025, wrote a <a href="https://www.lesswrong.com/posts/xtcpEceyEjGqBCHyK/obstacles-in-arc-s-agenda-finding-explanations" target="_blank">three-part sequence</a> on leaving and puts close to zero probability on the full plan succeeding end to end. ARC's own researchers are more hopeful: by his account they usually give the ambitious version a 10-20% chance. In the comment threads Mark Xu and Jacob Hilton do not dispute that the obstacles are real, only whether they can be solved; Hilton grants that the programme is daunting and ambitious, and Paul Christiano still expects all three to be resolved.</p>
+
+                <p>Anyone weighing this agenda should read him rather than my summary. Condensed, the three obstacles are:</p>
+
+                <ol>
+                    <li><a href="https://www.lesswrong.com/posts/xtcpEceyEjGqBCHyK/obstacles-in-arc-s-agenda-finding-explanations" target="_blank"><strong>Finding explanations.</strong></a> The agenda assumes a No-Coincidence Principle: every surprising behaviour has a short structural explanation. But some facts a model encodes are irreducible empirical regularities (&ldquo;Barack&rdquo; is followed by &ldquo;Obama&rdquo;), not decomposable mechanisms. An explanation-finder that cannot separate axioms from derivable structure either burns its budget on axioms or misses the deceptive behaviour it was meant to catch. ARC sidesteps this by working on small networks solving formal tasks; the problem returns the moment models touch real data.</li>
+                    <li><a href="https://www.lesswrong.com/posts/54HbdzcDR47SNNWfg/obstacles-in-arc-s-agenda-mechanistic-anomaly-detection" target="_blank"><strong>Mechanistic Anomaly Detection.</strong></a> MAD has to separate malign anomalies (sensor tampering, a prepared coup) from benign out-of-distribution behaviour (honest responses to novel situations). There is no conceptual handle for this distinction, and no concrete algorithm for any MAD variant. A deceptively aligned model gives the anomaly detector nothing to see, because it uses &ldquo;the usual reason&rdquo; for every action throughout training.</li>
+                    <li><a href="https://www.lesswrong.com/posts/jqnda7W9hugFP4Cnr/obstacles-in-arc-s-agenda-low-probability-estimation" target="_blank"><strong>Low-probability estimation.</strong></a> Catastrophes sit below sampling resolution, so their probability must be estimated mechanistically. But a strategic model can condition its defection on an astronomically rare trigger (say, a correct factorisation of RSA-2048), pushing the true probability below any feasible threshold, and the estimation target itself is ambiguous between &ldquo;what SGD implicitly encoded&rdquo; and &ldquo;what the scheming model believes&rdquo;. The latter is the <a href="https://www.alignmentforum.org/posts/qHCDysDnvhteW7kRd/arc-s-first-technical-report-eliciting-latent-knowledge" target="_blank">Eliciting Latent Knowledge</a> problem.</li>
+                </ol>
+
+                <p>I mostly agree that these are hard, which ARC's researchers do not dispute, and I am probably closer to Matolcsi's pessimism about how easily they yield. What I want to add is a fourth point, about a more recent move in the agenda.</p>
+
+                <h3>The data assumption is weakening</h3>
+
+                <p>Winer draws a sharp line between the model and the data-generating process. The model has been shaped by gradient descent, possibly deceptively, so it must be picked apart mechanistically. In the section &ldquo;Dealing with Real Data&rdquo; he argues that the process producing its inputs, assumed mostly to be human, has not been optimised to fool us, so black-box sampling of it is safe. He concludes that &ldquo;we are fine learning from samples of the data-generating process, as long as our understanding of the model is mechanistic.&rdquo;</p>
+
+                <p>This is somewhat qualified by a footnote about data poisoning, which (low confidence) they expect can be handled by data filtering. Even if we concede this point, I think the data are no longer safe because it is increasingly produced by optimised systems.</p>
+
+                <p>At deployment, the input stream is already partly model-generated: users paste model output back as queries, retrieved context is model-written, and in agentic settings the inputs are other models' outputs. Winer's ground for black-boxing the data was that &ldquo;the parameters of nature haven't [been optimised],&rdquo; which increasingly does not hold. The distribution ARC would characterise for low-probability estimation over real inputs is then an optimised artifact, not the neutral backdrop the argument assumes.</p>
+
+                <p>Sampling such a distribution still works, so Winer's methodological claim survives as stated. What it no longer delivers is human preferences, which is what the claim was needed for. This hits the alignment target, the part of the programme ARC already calls its most neglected.</p>
+
+                <p>I hold this loosely in one respect: one could argue the model-generated data will simply be filtered out. I doubt the filtering keeps pace.</p>
+
+                <h3>Verdict: what I would and would not do here</h3>
+
+                <p>The MSP framing and the cumulant-propagation results are worthy mathematical results, though dual-use, since the same estimator speeds up training.</p>
+
+                <p>The load-bearing safety claims are a different matter. Low-probability estimation on real distributions, MAD, and a contamination-proof alignment target still have no concrete proposal behind them, and the recent &ldquo;trust the data, scrutinise the model&rdquo; move does not survive a training ecosystem increasingly fed by models.</p>
+
+                <p>A former insider is very skeptical about the end-to-end agenda and puts the probability it will work out at near zero. Reading the same material from outside, I agree it is a long shot. What I do not see is how the agenda produces a guarantee that holds for a frontier system after the few years we likely have.</p>
+
+                <p>For a mathematician deciding where to spend the next few years, that splits into two different answers. The estimator mathematics is genuine, well-posed, and open. The AIcrowd competition is training and engineering a model, not open mathematics, which is why I did not enter. A more interesting problem for me was the generalization ARC sketched in a <a href="https://www.alignment.org/blog/mechanistic-estimation-for-expectations-of-random-products/" target="_blank">technical follow-up</a>: the same method extends past the MLP case to any function expressible as an expectation of random products, provided the function and the relevant distributions have &ldquo;sufficient symmetry, rather than being highly complex.&rdquo; This could be an interesting job for a mathematician. But if your reason for moving into AI safety is that you want a solution that matters in a few years, this is not where I would place the bet.</p>
+
+                <hr>
+
+                <p class="essay-series-note">Next in the series: Bengio's Scientist AI.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Ondřej Kubů. All rights reserved.</p>
+            <p class="pledge-notice" id="pledge-notice">I have taken the 🔸10% Pledge to donate 10% of my lifetime income to effective charities. <a href="https://www.givingwhatwecan.org/pledge" target="_blank">Find out more and join me here!</a></p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('pledge-diamond').addEventListener('click', function() {
+            const pledgeNotice = document.getElementById('pledge-notice');
+            pledgeNotice.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            pledgeNotice.classList.add('highlight');
+            setTimeout(() => pledgeNotice.classList.remove('highlight'), 2000);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI in Mathematics, 2026: From Assistant to Top Researcher - Ondřej Kubů</title>
+    <link rel="stylesheet" href="../style.css">
+    <script>
+        window.MathJax = {
+            tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }
+        };
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" defer></script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1><a href="../index.html" class="name-link">Ondřej Kubů</a> <span class="pledge-diamond" id="pledge-diamond" role="button" tabindex="0" title="Learn about my pledge">🔶</span> <a href="https://pauseai.info/" target="_blank" class="pause-icon" title="PauseAI"><img src="../pauseai-logo.svg" alt="PauseAI"></a></h1>
+            <nav>
+                <a href="../index.html">Home</a>
+                <a href="../publications.html">Publications</a>
+                <a href="../talks.html">Talks & Posters</a>
+                <a href="index.html" class="active">Writing</a>
+                <a href="../teaching.html">Teaching</a>
+                <a href="../software.html">Software</a>
+                <a href="../cv.html">CV</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="essay">
+            <div class="container">
+                <p class="essay-back"><a href="index.html">&larr; All writing</a></p>
+                <h2>AI in Mathematics, 2026: From Assistant to Top Researcher</h2>
+                <p class="essay-date">4 August 2026</p>
+                <p class="essay-crosspost">Also on <a href="https://kubuondr.substack.com/p/ai-in-mathematics-2026-assistant-researcher" target="_blank">Substack</a>. The equations render more reliably here.</p>
+
+                <p class="essay-lead">This is an expanded and updated version of <a href="https://ondrejkubu.github.io/slides/ai-in-math-going-exponential-2026-06-15.pdf" target="_blank">&ldquo;AI in math is going exponential: A working mathematician's view&rdquo;</a>, an online talk I gave to the Madrid effective altruism and AI safety community on 15 June 2026. A Czech version, <a href="https://ondrejkubu.github.io/slides/stroj-na-vety-2026-06-29.pdf" target="_blank">&ldquo;Stroj na věty: Co umělá inteligence dělá s matematikou a proč by nás to mělo zajímat&rdquo;</a>, followed on 29 June, delivered from Madrid to mostly in-person audiences in Prague and Brno. Given how much happened since then, the post is substantially updated. I am a postdoctoral researcher at <a href="https://www.icmat.es/" target="_blank">ICMAT</a> in Madrid; in my own time I volunteer for <a href="https://pauseai.info/" target="_blank">PauseAI Czech</a>. These views are my own.</p>
+
+                <p>In early June 2026, the mathematical community made a public effort to set a boundary around artificial intelligence. Three separate documents, published independently in <a href="https://www.nature.com/articles/d41586-026-01820-1" target="_blank"><em>Nature</em></a>, at <a href="https://icml.cc/virtual/2026/poster/67091" target="_blank">ICML</a>, and through a large community declaration out of <a href="https://leidendeclaration.ai/" target="_blank">Leiden</a>, all landed on roughly the same thesis: machine learning models are becoming exceptional at technical execution, but deciding what to work on, setting research agendas, and making true conceptual leaps remains uniquely human work.</p>
+
+                <p>I gave a talk in Madrid making a similar argument around the same time. Seven weeks later, that boundary hasn't just blurred; it has essentially collapsed as ever more groundbreaking results kept coming.</p>
+
+                <p>Not because of a single marketing stunt, but because the specific way that boundary gave way tells us something important about where this technology is actually going.</p>
+
+                <h3>What the field claimed in June</h3>
+
+                <p>One of the visible statements was a commentary in <a href="https://www.nature.com/articles/d41586-026-01820-1" target="_blank"><em>Nature</em></a> authored by researchers from the <a href="https://lims.ac.uk/" target="_blank">London Institute for Mathematical Sciences</a> and Google DeepMind. It was an optimistic piece encouraging mathematicians to engage with these tools, but it was clear about their limits: AI systems lack the context, taste, and intuition required to know which questions are worth asking. While noting that progress was accelerating, the authors concluded that &ldquo;the decisive creative leaps are still made by humans.&rdquo;</p>
+
+                <p>Around the same time, DeepMind researcher <a href="https://www.tomzahavy.com/files/llms-cant-jump.pdf" target="_blank">Tom Zahavy</a> published a position paper arguing that language models are structurally incapable of the conceptual &ldquo;jumps&rdquo; needed for discovery, grounding his argument in an analysis of Einstein's path to general relativity. Meanwhile, over three thousand mathematicians signed the <a href="https://leidendeclaration.ai/" target="_blank">Leiden Declaration</a>. While often described as a declaration that AI cannot do deep math, the text itself was actually a warning about reliability, corporate hype, and commercial incentives, explicitly noting that it reflected the state of tools as of May 2026.</p>
+
+                <p>All three documents date themselves no later than June 2026. On an exponential curve, a few weeks is enough to make a snapshot obsolete.</p>
+
+                <h3>The baseline from my own desk</h3>
+
+                <p>My perspective at the time came directly from my daily work. As a mathematical physicist working on integrable systems, I don't build these models; I just use standard commercial tools. In 2023, ChatGPT couldn't reliably format my <a href="https://www.maplesoft.com/products/Maple/" target="_blank">Maple</a> code. By late 2025, tools like <a href="https://claude.com/claude-code" target="_blank">Claude Code</a> were saving me hours every week converting output, sifting through literature, and checking calculations.</p>
+
+                <p>Yet my practical rule of thumb remained: the model could handle the heavy computational legwork once I picked a direction, but whenever a calculation stalled, it couldn't get me unstuck. If a move required something that wasn't already in the literature for that specific topic, the model just generated confident gibberish. I concluded, like many others, that setting the strategic direction was still our job.</p>
+
+                <p>What I overlooked was that individual user experience is almost always a lagging indicator. I was using models available on $20 commercial subscriptions on standard problems, while internal lab setups were already a generation ahead.</p>
+
+                <h3>The first crack: Erdős' planar unit-distance problem</h3>
+
+                <p>The clear counterexample came when OpenAI ran an internal system against <a href="https://www.erdosproblems.com/" target="_blank">list of open problems posed by Paul Erdős</a> and solved a prominent one on the list. The problem itself is easy to state: given \(n\) points on a plane, how many pairs can be exactly one unit apart? For eighty years, the consensus was that a standard square grid was optimal.</p>
+
+                <p>OpenAI's model <a href="https://cdn.openai.com/pdf/74c24085-19b0-4534-9c90-465b8e29ad73/unit-distance-proof.pdf" target="_blank">disproved that consensus in a single run</a>. Instead of trying to optimise geometric patterns, it reached into high-degree algebraic number fields, a domain of mathematics no geometer working on the problem had thought to apply. Nine mathematicians subsequently verified and cleaned up the argument, confirming that the count actually <a href="https://arxiv.org/abs/2605.20579" target="_blank">grows like \(n^{1+\delta}\) for \(\delta \geq 0.014\)</a>.</p>
+
+                <p>Going directly against an eighty-year consensus and importing tools from an unrelated branch of mathematics isn't just &ldquo;computing faster.&rdquo; It is deciding where to look.</p>
+
+                <h3>Seven weeks of evidence</h3>
+
+                <p>In the seven weeks since, that result stopped looking like an anomaly. First, at the 2026 International Mathematical Olympiad, four separate models from different organisations <a href="https://x.com/deedydas/status/2079409461874332066" target="_blank">achieved perfect 42/42 scores</a> under time constraints, a result also reported in Anthropic's own <a href="https://www-cdn.anthropic.com/c5fbac3f0b1280a933ebd26d3cb8bb9f5bdeaf48/Claude%20Opus%205%20System%20Card.pdf" target="_blank">Opus 5 system card</a>.</p>
+
+                <p>Then, Anthropic researcher Levent Alpöge used Claude Fable 5 during the World Cup final on July 19 to construct <a href="https://phys.org/news/2026-07-tiny-social-media-mathematicians-rethinking.html" target="_blank">a valid counterexample</a> to the Jacobian conjecture, a polynomial mapping problem posed in 1939.</p>
+
+                <p>And finally, in the last week, came this maelstrom:</p>
+
+                <ul>
+                    <li><strong>OpenAI's Astra models</strong>: <a href="https://openai.com/index/ten-advances-in-mathematics/" target="_blank">Solved ten open problems</a> across mathematics and quantum complexity, accompanied by machine-checked formalisations in <a href="https://lean-lang.org/" target="_blank">Lean</a>. Nabeel Qureshi <a href="https://x.com/nabeelqu/status/2083543826057048373" target="_blank">reported</a> that each of these would probably merit a Fields Medal; mathematician Alex Kontorovich <a href="https://x.com/AlexKontorovich/status/2083558830462406988" target="_blank">responded</a> with two exclamation marks.</li>
+                    <li><strong>The Maxwell conjecture</strong>: Closer to my own field, a <a href="https://arxiv.org/abs/2607.27197" target="_blank">July paper</a> disproved a long-standing conjecture on the equilibria of electric point charges. The authors explicitly stated that the core breakthrough, a specific spatial arrangement using the charge scaling \(q_\varepsilon = \tfrac{3}{4}\varepsilon^3 - \tfrac{5}{32}\varepsilon^5\), was suggested directly by GPT-5.6 Sol. The human researchers simply verified the calculus.</li>
+                    <li><strong>Individual research</strong>: Former mathematician Alexander Gerko, now CEO of <a href="https://www.xtxmarkets.com/" target="_blank">XTX Markets</a>, used a standard commercial subscription over a month of spare time to <a href="https://x.com/natanielruizg/status/2083673120523567425" target="_blank">formalise several PhD-level results</a>, including a counterexample to a major open conjecture in his old field.</li>
+                    <li><strong>Benchmark shifts</strong>: Models began clearing research-grade open problems on the <a href="https://epoch.ai/frontiermath/open-problems" target="_blank">FrontierMath: Open Problems</a> evaluation set maintained by <a href="https://epoch.ai/" target="_blank">Epoch AI</a>, now having solved 3/50.</li>
+                </ul>
+
+                <h3>How shall I compete?</h3>
+
+                <p>None of the results above came from a basic subscription. The unit-distance construction ran on an unreleased internal model, a full generation ahead of what I pay for out of my own pocket. Astra and the Jacobian counterexample are lab-internal work. Gerko's month of &ldquo;vibe research&rdquo; drew on privileges most working mathematicians don't have. Getting a frontier model to actually produce results like these takes running it for tens of hours on problems that resist a quick answer, and a basic subscription is not built or priced for that.</p>
+
+                <p>The divide isn't simply frontier labs versus everyone else, either. Axiom Math, a much smaller outfit, matched the big labs at this year's IMO by formalising every solution in Lean, and it has no more access to an unreleased internal model than I do. But whatever Axiom has built isn't widely available either.</p>
+
+                <p>On 29 July, OpenAI announced <a href="https://openai.com/index/chatgpt-for-academic-researchers/" target="_blank">ChatGPT for Academic Researchers</a>: free frontier access, including GPT-5.6 Terra, Luna and Sol plus Codex, for ten thousand researchers this summer, scaling to a hundred thousand through 2027, as part of a $250 million-plus commitment. Eligibility is restricted to &ldquo;qualifying researchers at degree-granting institutions with significant research activity.&rdquo; I checked the institution list myself: neither Spanish nor Czech institution is on it.</p>
+
+                <p>So the asymmetry that let a handful of labs and one very well-resourced quant find these results first is not closing. It is being redrawn along institutional lines that put me, and most of my colleagues, at a disadvantage. This is why the Leiden Declaration, mentioned above, called for public research compute that does not depend on which company decides to grant access.</p>
+
+                <h3>The new problem: solved versus understood</h3>
+
+                <p>This rapid progress has introduced a distinct failure mode. When <a href="https://x.com/henryquantum/status/2083623695436623915" target="_blank">Henry Yuen</a>, a quantum information theorist at Columbia, examined an Astra-generated proof for an open problem he had pursued for a decade, he confirmed the argument was sound. However, he noted that the exposition was strangely structured.</p>
+
+                <p>The paper spent several pages establishing standard, trivial definitions, and then casually introduced the crucial technical breakthrough, a specific Uhlmann transformation, buried deep in a later section as if it were completely obvious.</p>
+
+                <p>We are entering a phase where models can identify correct strategic directions and solve complex open problems, but present their reasoning in ways that obscure why the breakthrough works. The proof may hold, but human insight does not automatically follow.</p>
+
+                <h3>Where that leaves us</h3>
+
+                <figure class="essay-figure">
+                    <img src="calvin-math.jpg" alt="Calvin: &quot;Given the pace of technology, I propose we leave math to the machines and go play outside.&quot;">
+                    <figcaption>h/t <a href="https://x.com/Darpinian/status/2083471575895179549?s=20" target="_blank">James</a></figcaption>
+                </figure>
+
+                <p>Looking back at the June consensus, the boundary line has not held. Models are no longer merely executing steps assigned by humans; they are selecting unexpected approaches, synthesising tools across domains, and handing researchers valid counterexamples to clean up.</p>
+
+                <p>Mathematics is the cleanest testing ground for AI capabilities because feedback is unambiguous: an argument either holds logically or it fails. But the underlying capability demonstrated here, selecting an unprompted direction and executing it successfully, is currently being deployed in domains that lack formal verifiers or clear mathematical bounds.</p>
+
+                <p>We don't see it that clearly in domains without a Lean or a referee to catch a wrong turn. But that absence isn't the root of the risk; it only means we may not notice the same capability going wrong in more dangerous fields like cybersecurity or bio until later (Both Anthropic and OpenAI recently found their models escaping from sandboxes and attacking real companies during <a href="https://thezvi.substack.com/p/further-developments-about-internal" target="_blank">cybersecurity evals</a>).</p>
+
+                <p>None of this trajectory is an inevitable law of nature. It is the direct consequence of development choices made within a small number of labs. Historically, when the implications of powerful technical developments have become clear, societies have established boundaries, as seen with gain-of-function research, human cloning, and atmospheric nuclear testing. The rapid shifts in mathematics over the past seven weeks are providing an early, clear record of what these systems can do when left to run.</p>
+
+                <p>If you want the full existential-risk argument made to a mathematical audience, Xiaoyu He has posted <a href="https://alkjash.github.io/ai-risk/" target="_blank"><em>Existential Risk from AI: An Exposition for Mathematicians</em></a>, covering takeover, recursive self-improvement, why alignment resists solution, and gives counterarguments to common objections. Most of the article establishes or elaborates on his premises.</p>
+
+                <p>One of the people who reached that judgment is Jacob Tsimerman, one of the experts OpenAI consulted on the unit-distance construction. On 23 July, the same day he <a href="https://www.quantamagazine.org/jacob-tsimerman-wins-2026-fields-medal-for-andre-oort-conjecture-proof-20260723/" target="_blank">won the 2026 Fields Medal</a> for his role in proving the André-Oort conjecture, he <a href="https://www.theatlantic.com/technology/2026/07/jacob-tsimerman-math-fields-medal-openai/688120/" target="_blank">announced he was joining OpenAI</a> to work on AI safety, on leave from his University of Toronto post. He expects AI to be robustly better than mathematicians at the job within two years, and says the field will have to rethink how it works around that.</p>
+
+                <p>If you are a mathematician looking for a way in that starts from your own discipline, he has put together a starting point at <a href="https://mathforaisafety.org" target="_blank">mathforaisafety.org</a>.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Ondřej Kubů. All rights reserved.</p>
+            <p class="pledge-notice" id="pledge-notice">I have taken the 🔸10% Pledge to donate 10% of my lifetime income to effective charities. <a href="https://www.givingwhatwecan.org/pledge" target="_blank">Find out more and join me here!</a></p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('pledge-diamond').addEventListener('click', function() {
+            const pledgeNotice = document.getElementById('pledge-notice');
+            pledgeNotice.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            pledgeNotice.classList.add('highlight');
+            setTimeout(() => pledgeNotice.classList.remove('highlight'), 2000);
+        });
+    </script>
+</body>
+</html>
